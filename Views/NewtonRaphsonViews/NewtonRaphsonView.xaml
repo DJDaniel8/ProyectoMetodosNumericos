@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="UIProyectoMN.Views.NewtonRaphsonViews.NewtonRaphsonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIProyectoMN.Views.NewtonRaphsonViews"
+             xmlns:vm="clr-namespace:UIProyectoMN.ViewModels.NewtonRaphsonViewModels"
+             mc:Ignorable="d" 
+             Visibility="{Binding ControlVisibility}"
+             d:Visibility="Visible"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:NewtonRaphsonViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Newton Raphson" FontSize="26" HorizontalAlignment="Center"/>
+        <Label Content="En análisis numérico, el método de Newton es un algoritmo para encontrar aproximaciones" Grid.Row="1" FontSize="16" HorizontalAlignment="Center"/>
+        <Label Content="de los ceros o raíces de una función real. También puede ser usado para encontrar" Grid.Row="2" FontSize="16" HorizontalAlignment="Center"/>
+        <Label Content="el máximo o mínimo de una función" Grid.Row="3" FontSize="16" HorizontalAlignment="Center"/>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10">
+            <Label Content="Funcion: " FontSize="16" />
+            <TextBox Text="{Binding Funcion, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="28" FontSize="16"/>
+            <Label Content="Iteraciones: " FontSize="16"/>
+            <Slider Minimum="2" Maximum="10" Width="100" VerticalAlignment="Center" Value="{Binding Iteraciones}"/>
+            <Label Content="{Binding Iteraciones}" FontSize="16"/>
+            <Label Content="X inicial: " FontSize="16" Margin="20 0 0 0"/>
+            <TextBox Text="{Binding XInicial, UpdateSourceTrigger=PropertyChanged}" Width="50" Height="28" FontSize="16"/>
+            <Button Content="Calcular" Height="28" Margin="10 0" FontSize="16" Command="{Binding Calcular}"/>
+        </StackPanel>
+
+        <TextBlock Text="{Binding Respuesta}" Grid.Row="5" FontSize="16"/>
+    </Grid>
+</UserControl>

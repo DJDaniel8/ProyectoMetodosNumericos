@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="UIProyectoMN.Views.InterseccionesViews.InterseccionesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIProyectoMN.Views.InterseccionesViews"
+             xmlns:vm="clr-namespace:UIProyectoMN.ViewModels.InterseccionesViewModels"
+             mc:Ignorable="d" 
+             Visibility="{Binding ControlVisibility}" d:Visibility="Visible"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:InterseccionesViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Intersecciones Entre Funciones" FontSize="26" HorizontalAlignment="Center"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+            <Label Content="Funcion 1:" FontSize="16"/>
+            <TextBox Text="{Binding Funcion1,UpdateSourceTrigger=PropertyChanged}" Width="200" Height="28" FontSize="16"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+            <Label Content="Funcion 2:" FontSize="16"/>
+            <TextBox Text="{Binding Funcion2,UpdateSourceTrigger=PropertyChanged}" Width="200" Height="28" FontSize="16"/>
+        </StackPanel>
+        <Button Content="Calcular" FontSize="16" Grid.Row="3" Width="75" Command="{Binding CalcularCommand}"/>
+
+        <TextBlock Text="{Binding Respuesta}" Grid.Row="4" FontSize="16"/>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="UIProyectoMN.Views.MullerViews.MullerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UIProyectoMN.Views.MullerViews"
+             xmlns:vm="clr-namespace:UIProyectoMN.ViewModels.MullerViewModels"
+             Visibility="{Binding ControlVisibility}" d:Visibility="Visible"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.DataContext>
+        <vm:MullerViewModel/>
+    </UserControl.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Metodo Muller" FontSize="26" HorizontalAlignment="Center"/>
+        <Label Content="El método de Muller​ es un procedimiento de resolución numérica de ecuaciones no" Grid.Row="1" FontSize="16" HorizontalAlignment="Center"/>
+        <Label Content="lineales que se basa en el método de la secante, pero que utiliza una aproximación " Grid.Row="2" FontSize="16" HorizontalAlignment="Center"/>
+        <Label Content="cuadrática en lugar de una aproximación lineal." Grid.Row="3" FontSize="16" HorizontalAlignment="Center"/>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10">
+            <Label Content="Funcion: " FontSize="16" />
+            <TextBox Text="{Binding Funcion,UpdateSourceTrigger=PropertyChanged}" Width="200" Height="28" FontSize="16"/>
+            <Label Content="X&#8320;" FontSize="16" Margin="5 0 0 0"/>
+            <TextBox Text="{Binding X0,UpdateSourceTrigger=LostFocus, ConverterCulture=es-GT}" Width="50" Height="28" FontSize="16"/>
+            <Label Content="X&#8321;" FontSize="16" Margin="5 0 0 0"/>
+            <TextBox Text="{Binding X1,UpdateSourceTrigger=LostFocus, ConverterCulture=es-GT}" Width="50" Height="28" FontSize="16"/>
+            <Label Content="X&#8322;" FontSize="16" Margin="5 0 0 0"/>
+            <TextBox Text="{Binding X2,UpdateSourceTrigger=LostFocus, ConverterCulture=es-GT}" Width="50" Height="28" FontSize="16"/>
+            <Label Content="Error" FontSize="16" Margin="5 0 0 0"/>
+            <TextBox Text="{Binding Error,UpdateSourceTrigger=LostFocus, ConverterCulture=es-GT}" Width="50" Height="28" FontSize="16"/>
+            <Button Content="Calcular" Height="28" Margin="10 0" FontSize="16" Command="{Binding CalcularCommand}"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="5" ItemsSource="{Binding Iteracions}" Margin="10"
+                  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                  CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserSortColumns="False"
+                  FontSize="16">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="X0" Width="*" Binding="{Binding X0,StringFormat=f8}" FontSize="16"/>
+                <DataGridTextColumn Header="X1" Width="*" Binding="{Binding X1,StringFormat=f8}" FontSize="16"/>
+                <DataGridTextColumn Header="X2" Width="*" Binding="{Binding X2,StringFormat=f8}" FontSize="16"/>
+                <DataGridTextColumn Header="X3" Width="*" Binding="{Binding X3,StringFormat=f8}" FontSize="16"/>
+                <DataGridTextColumn Header="ERROR" Width="*" Binding="{Binding Error,StringFormat=f8}" FontSize="16"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
